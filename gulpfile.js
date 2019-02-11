@@ -7,7 +7,6 @@ gulp.task('default',['js','w']);
 
 gulp.task('w', function() {
   gulp.watch('./src/js/**/*',['js']);
-
 });
 
 gulp.task('js', function() {
