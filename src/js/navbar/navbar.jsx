@@ -1,24 +1,25 @@
 import React from 'react'
-
+import axios from 'axios'
 import NavMenu from './nav-menu'
 
 class Navbar extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {menu: []}
+    }
+
+    componentDidMount(){
+        let self = this
+        axios.get('http://localhost:8000/servidor.php?menu=1').then( response => {
+            self.setState({
+                menu: response.data
+            })
+        })
+    }
+
     render() {
 
-        let menu =[
-            {
-                titulo:"Home",
-                link:"#home"
-            },
-            {
-                titulo:"Contato",
-                link:"#contato"
-            },
-            {
-                titulo:"Sobre",
-                link:"#sobre"
-            },
-        ];
+        let menu = this.state.menu
 
         let corNav = `nav-wrapper ${this.props.cor}`
         
